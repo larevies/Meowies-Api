@@ -1,0 +1,95 @@
+###
+POST http://127.0.0.1:8080/user
+Content-Type: application/json
+// Success
+// or
+// Fail
+
+{
+  "Name": "юзер1",
+  "Email": "юююююю@гугл.ком",
+  "Password": "зеер",
+  "Birthday": "yesterday",
+  "ProfilePicture": "2"
+}
+
+
+
+###
+GET http://127.0.0.1:8080/user/юююююю@гугл.ком
+// {"Id":1,"Name":"юзер1","Email":"юююююю@гугл.ком","Password":"зеер","Birthday":"2024-02-20","ProfilePicture":"2"}
+
+
+
+###
+GET http://127.0.0.1:8080
+// hello world
+
+
+
+###
+POST http://127.0.0.1:8080/user
+Content-Type: application/json
+
+{
+  "Name": "ыар",
+  "Email": "вар",
+  "Password": "ыаод",
+  "Birthday": "03/02/2024 00:00:00",
+  "ProfilePicture": "5"
+}
+
+
+
+###
+POST http://127.0.0.1:8080/login
+Content-Type: application/json
+// { "Id": 4, "Name": "Name", "Email": "Email", "Password": "Password", "Birthday": "2024-02-20", "ProfilePicture": "2" }
+
+{
+  "Email": "Email",
+  "Password": "Password"
+}
+
+
+
+###
+POST http://192.168.0.10:8080/change/password
+Content-Type: application/json
+// Success
+// or
+// Fail
+
+{
+  "Email": "Email",
+  "Password": "Password"
+}
+
+
+
+###
+POST http://192.168.0.10:8080/change/name
+Content-Type: application/json
+// Success
+// or
+// Fail
+
+{
+  "Email": "Email",
+  "Name": "Name"
+}
+
+
+
+###
+POST http://192.168.0.10:8080/change/pic
+Content-Type: application/json
+// Success
+// or
+// Fail
+
+{
+  "Email": "Email",
+  "PicNum": "2"
+}
+

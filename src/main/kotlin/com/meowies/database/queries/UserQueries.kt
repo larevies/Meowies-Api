@@ -14,7 +14,6 @@ class UserQueries {
             connection = DriverManager.getConnection(url, username, DBPassword)
 
         } catch (e: SQLException) {
-            println(errorMessage)
             println("${e.message}")
         }
     }
@@ -59,7 +58,6 @@ class UserQueries {
      */
     fun addUser(name:String, email:String, password:String, birthday:String, profilePicture:String): Boolean {
         try {
-            val profilePicture = profilePicture.toInt()
             val statement = connection?.createStatement()
             statement?.executeQuery(
                 """INSERT INTO Users(

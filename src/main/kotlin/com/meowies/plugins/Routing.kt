@@ -1,5 +1,6 @@
 package com.meowies.plugins
 
+import com.meowies.routes.bookmarkRouting
 import com.meowies.routes.userRouting
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -11,5 +12,6 @@ fun Application.configureRouting() {
             call.respondText("Hello World!")
         }
         userRouting()
+        bookmarkRouting()
     }
 }

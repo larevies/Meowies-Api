@@ -13,7 +13,6 @@ fun Route.userRouting() {
 
     route("/user") {
 
-
         /***
          * Поиск пользователя по имейлу
          */
@@ -44,7 +43,6 @@ fun Route.userRouting() {
                 user.Birthday,
                 user.ProfilePicture
             )
-            println("well you got SOMEWHERE")
             if (created) {
                 call.respondText("Success", status = HttpStatusCode.Created)
             } else {

@@ -4,6 +4,7 @@ import com.meowies.database.connection.DBPassword
 import com.meowies.database.connection.url
 import com.meowies.database.connection.username
 import com.meowies.modules.Bookmark
+import com.meowies.modules.User
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
@@ -81,6 +82,37 @@ class BookmarkQueries {
         } catch (e: SQLException) {
             println("${e.message}")
             return e.message == "Запрос не вернул результатов."
+        }
+    }
+
+    fun findBookmark(bookmark:Bookmark): Int? {
+
+        var id: Int? = null
+        var foundBookmark: Bookmark? = null
+        var movieid = bookmark.MovieId.toString();
+        var userid = bookmark.UserId.toString();
+
+        try {
+            val statement = connection?.prepareStatement(
+                """SELECT id, MovieId, UserId FROM Bookmarks WHERE MovieId = '${movieid}' AND UserId = '${userid}';"""
+            )
+
+            val resultSet = statement?.executeQuery()
+
+            resultSet?.use {
+                if (resultSet.next()) {
+                     foundBookmark = Bookmark(
+                        Id = resultSet.getInt("id"),
+                        MovieId = resultSet.getInt("movieid"),
+                        UserId = resultSet.getInt("userid")
+                     )
+                }
+            }
+            return foundBookmark?.Id
+        }
+        catch (e: SQLException) {
+            println("${e.message}")
+            return foundBookmark?.Id
         }
     }
 }

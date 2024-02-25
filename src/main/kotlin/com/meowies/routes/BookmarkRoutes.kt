@@ -62,5 +62,13 @@ fun Route.bookmarkRouting() {
                 }
             }
         }
+
+        route("/find") {
+            post {
+                val bookmark = call.receive<Bookmark>()
+                val id: Int? = bookmarkQueries.findBookmark(bookmark)
+                call.respond(id.toString())
+            }
+        }
     }
 }

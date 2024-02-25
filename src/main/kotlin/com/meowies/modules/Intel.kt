@@ -16,6 +16,6 @@ data class Name(
 @Serializable
 data class Picture(
     val Email: String,
-    val PicNum: String
+    val PicNum: Int
 )
 

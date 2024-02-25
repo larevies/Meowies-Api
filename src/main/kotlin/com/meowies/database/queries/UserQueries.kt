@@ -145,12 +145,13 @@ class UserQueries {
     /***
      * Смена фото
      */
-    fun changePicture(email: String, pic: String): Boolean {
+    fun changePicture(email: String, pic: Int): Boolean {
+        var picture = pic.toString()
         try {
             val statement = connection?.createStatement()
             statement?.executeQuery(
                 """UPDATE Users
-                    SET ProfilePicture = ${pic}
+                    SET ProfilePicture = ${picture}
                     WHERE Email = '${email}'
                     """
             )

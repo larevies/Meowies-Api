@@ -41,7 +41,7 @@ class UserQueries {
                         Email = resultSet.getString("email"),
                         Password = resultSet.getString("password"),
                         Birthday = resultSet.getString("birthday"),
-                        ProfilePicture = resultSet.getString("profilepicture")
+                        ProfilePicture = resultSet.getInt("profilepicture")
                     )
                 }
             }
@@ -56,13 +56,14 @@ class UserQueries {
     /***
      * Добавление пользователя в базу данных
      */
-    fun addUser(name:String, email:String, password:String, birthday:String, profilePicture:String): Boolean {
+    fun addUser(name:String, email:String, password:String, birthday:String, profilePicture:Int): Boolean {
+        val profPic: String = profilePicture.toString()
         try {
             val statement = connection?.createStatement()
             statement?.executeQuery(
                 """INSERT INTO Users(
                         Name, Email, Password, Birthday, ProfilePicture)
-                        VALUES ('$name', '$email', '$password', '$birthday', $profilePicture);
+                        VALUES ('$name', '$email', '$password', '$birthday', $profPic);
                     """
             )
             return true
@@ -92,7 +93,7 @@ class UserQueries {
                         Email = resultSet.getString("email"),
                         Password = resultSet.getString("password"),
                         Birthday = resultSet.getString("birthday"),
-                        ProfilePicture = resultSet.getString("profilepicture")
+                        ProfilePicture = resultSet.getInt("profilepicture")
                     )
                 }
             }

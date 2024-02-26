@@ -111,5 +111,17 @@ fun Route.userRouting() {
                 }
             }
         }
+
+        route("/email") {
+            post {
+                val newEmail = call.receive<NewEmail>()
+                val res = userQueries.changeEmail(newEmail.Email, newEmail.NewEmail)
+                if (res) {
+                    return@post call.respondText("Success", status = HttpStatusCode.Accepted)
+                } else {
+                    return@post call.respondText("Fail", status = HttpStatusCode.NotFound)
+                }
+            }
+        }
     }
 }

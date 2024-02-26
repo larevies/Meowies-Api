@@ -161,4 +161,20 @@ class UserQueries {
             return e.message == "Запрос не вернул результатов."
         }
     }
+
+    fun changeEmail(email: String, newEmail: String): Boolean {
+        try {
+            val statement = connection?.createStatement()
+            statement?.executeQuery(
+                """UPDATE Users
+                    SET Email = '${newEmail}'
+                    WHERE Email = '${email}'
+                    """
+            )
+            return true
+        } catch (e: SQLException) {
+            println("${e.message}")
+            return e.message == "Запрос не вернул результатов."
+        }
+    }
 }

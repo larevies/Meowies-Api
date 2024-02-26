@@ -19,3 +19,9 @@ data class Picture(
     val PicNum: Int
 )
 
+@Serializable
+data class NewEmail(
+    val Email: String,
+    val NewEmail: String
+)
+

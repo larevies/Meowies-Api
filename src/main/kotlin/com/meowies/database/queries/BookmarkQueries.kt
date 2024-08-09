@@ -4,7 +4,6 @@ import com.meowies.database.connection.DBPassword
 import com.meowies.database.connection.url
 import com.meowies.database.connection.username
 import com.meowies.modules.Bookmark
-import com.meowies.modules.User
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
@@ -87,10 +86,9 @@ class BookmarkQueries {
 
     fun findBookmark(bookmark:Bookmark): Int? {
 
-        var id: Int? = null
         var foundBookmark: Bookmark? = null
-        var movieid = bookmark.MovieId.toString();
-        var userid = bookmark.UserId.toString();
+        val movieid = bookmark.MovieId.toString()
+        val userid = bookmark.UserId.toString()
 
         try {
             val statement = connection?.prepareStatement(

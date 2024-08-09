@@ -63,7 +63,7 @@ class UserQueries {
             statement?.executeQuery(
                 """INSERT INTO Users(
                         Name, Email, Password, Birthday, ProfilePicture)
-                        VALUES ('$name', '$email', '$password', '$birthday', $profPic);
+                        VALUES ('$name', '$email', crypt('$password', gen_salt('bf')), '$birthday', $profPic);
                     """
             )
             return true
@@ -81,7 +81,7 @@ class UserQueries {
         try {
             val statement = connection?.prepareStatement(
                 """SELECT id, name, email, password, birthday, profilePicture 
-                    |FROM Users WHERE email = '${email}' AND password = '$password';""".trimMargin()
+                    |FROM Users WHERE email = '${email}' AND password = crypt('$password',password);""".trimMargin()
             )
             val resultSet = statement?.executeQuery()
 
@@ -112,8 +112,8 @@ class UserQueries {
             val statement = connection?.createStatement()
             statement?.executeQuery(
                 """UPDATE Users
-                    SET Password = '${password}'
-                    WHERE Email = '${email}'
+                    SET Password = crypt('$password',gen_salt('bf'))
+                    WHERE Email = '${email}';
                     """
             )
             return true
@@ -146,7 +146,7 @@ class UserQueries {
      * Смена фото
      */
     fun changePicture(email: String, pic: Int): Boolean {
-        var picture = pic.toString()
+        val picture = pic.toString()
         try {
             val statement = connection?.createStatement()
             statement?.executeQuery(
